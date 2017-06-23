@@ -8,8 +8,7 @@ use App\Item;
 use App\ItemImage;
 use Auth;
 
-class ItemController extends Controller
-{
+class ItemController extends Controller {
     /**
      * Display a listing of the resource.
      *
@@ -70,7 +69,7 @@ class ItemController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        //
+        return view('pages.items.show');
     }
 
     /**
@@ -80,7 +79,7 @@ class ItemController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        //
+        return view('pages.items.edit');
     }
 
     /**
