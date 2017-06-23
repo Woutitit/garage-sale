@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
@@ -27,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -51,7 +54,7 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-        ]);
+            ]);
     }
 
     /**
@@ -66,10 +69,44 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-        ]);
+            ]);
     }
 
     public function showRegistrationForm() {
-        return view('pages.auth.login');
+        return view('pages.auth.register');
+    }
+
+    public function register(Request $request) {
+
+        // Validate input
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'unique:users|required',
+            'password' => 'confirmed',
+            'password_confirmation' => 'required',
+            ]);
+
+        // Extract unique user path
+        $path = strstr($request->email, '@', true);
+
+        // Check if this path doesn't exist yet
+
+        // Set default avatar
+        $avatar = '';
+
+        // Create user
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'path' => $path
+            ]);
+
+        // Set login session
+        Auth::login($user, true);
+
+        // Redirect
+        return redirect(url('/'));
+
     }
 }
