@@ -79,7 +79,10 @@ class ItemController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        return view('pages.items.edit');
+
+        $categories = Category::all()->sortBy("name");
+
+        return view('pages.items.edit', ['categories' => $categories, 'item' => Item::find($id)]);
     }
 
     /**
