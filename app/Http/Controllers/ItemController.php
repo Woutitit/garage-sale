@@ -109,7 +109,8 @@ class ItemController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
-            'category' => $request->category
+            'category' => $request->category,
+            'user_id' => Auth::id()
             ])->id;
     }
 
