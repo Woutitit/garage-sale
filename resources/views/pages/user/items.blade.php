@@ -3,10 +3,15 @@
 @section('content')
 <div class="container">
 	@if(Auth::check())
-	<h1>My Items</h1>
-	<a href="/items/create" class="btn btn-success">Create item</a>
+	<div class="page-header">
+		<h1>My Items</h1>
+	</div>
+	<a href="/items/create" class="btn btn-success u--floatRight">Create item</a>
+	<div class="u--cf"></div>
 	@else
-	<h1>Items of Wout Borghgraef</h1>
+	<div class="page-header">
+		<h1>My Items</h1>
+	</div>
 	@endif
 	@if (count($items) > 0)
 	<div class="row">
