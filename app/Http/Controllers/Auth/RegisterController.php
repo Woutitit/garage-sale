@@ -106,7 +106,7 @@ class RegisterController extends Controller
         Auth::login($user, true);
 
         // Redirect
-        return redirect(url('/'));
+        return redirect(url($path . '/items'));
 
     }
 }
