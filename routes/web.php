@@ -22,3 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => '{user_url}'], function() {
 	Route::get('/items', 'UserItemController@index');
 });
+
+Route::resource('items', 'ItemController', ['except' => [
+    'index'
+]]);

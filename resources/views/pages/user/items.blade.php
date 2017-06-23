@@ -4,7 +4,7 @@
 <div class="container">
 @if(Auth::check())
 <h1>My Items</h1>
-<a href="#" class="btn btn-success">Add item</a>
+<a href="/items/create" class="btn btn-success">Create item</a>
 @else
 <h1>Items of Wout Borghgraef</h1>
 @endif
