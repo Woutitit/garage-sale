@@ -34,9 +34,18 @@ class ItemController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request) {
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required|integer',
+            'categories' => 'required',
+            'picture_1' => 'required',
+            'picture_2' => 'sometimes',
+            'picture_3' => 'sometimes',
+            ]);
+
+        echo "NOICE!";
     }
 
     /**
