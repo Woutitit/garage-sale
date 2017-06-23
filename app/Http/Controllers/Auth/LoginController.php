@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
+use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -38,5 +41,28 @@ class LoginController extends Controller
 
     public function showLoginForm() {
         return view('pages.auth.login');
+    }
+
+    public function login(Request $request) {
+
+        // Validate input
+        $this->validate($request, [
+            'email' => 'required',
+            'password' => 'required',
+            ]);
+
+        // Attempt login
+        $email = $request->email;
+        $password = $request->password;
+
+        if (Auth::attempt(array('email' => $email, 'password' => $password))){
+            $path = User::where('email', $email)->value('path');
+            Auth::user()->setAttribute('path', $path);
+            return redirect()->intended(Auth::user()->path . '/items');
+        }
+        else {        
+            return redirect()->intended('login');
+        }
+
     }
 }
