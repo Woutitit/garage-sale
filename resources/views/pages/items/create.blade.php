@@ -31,10 +31,9 @@
 							<label for="categories" class="col-md-4 control-label">Category</label>
 							<div class="col-md-6">
 								<select class="form-control" id="categories">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
+								@foreach($categories as $cat)
+									<option>{{ $cat->name }}</option>
+								@endforeach
 								</select>
 							</div>
 						</div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
 
 class ItemController extends Controller
 {
@@ -22,7 +23,9 @@ class ItemController extends Controller
      */
     public function create() {
 
-        return view('pages.items.create');
+        $categories = Category::all()->sortBy("name");
+
+        return view('pages.items.create', ['categories' => $categories]);
     }
 
     /**

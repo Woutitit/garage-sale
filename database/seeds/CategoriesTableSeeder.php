@@ -5,7 +5,8 @@ use Illuminate\Database\Seeder;
 class CategoriesTableSeeder extends Seeder {
 
 	public $category_names = [
-	'Strand'
+    'Tools',
+	'Vacation'
 	];
 
     /**
@@ -14,6 +15,9 @@ class CategoriesTableSeeder extends Seeder {
      * @return void
      */
     public function run() {
+
+        DB::table('categories')->delete();
+
     	foreach($this->category_names as $cName) {
     		DB::table('categories')->insert([
     			'name' => $cName,
