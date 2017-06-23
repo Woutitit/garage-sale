@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\Item;
+use App\ItemImage;
+use Auth;
 
 class ItemController extends Controller
 {
@@ -35,17 +38,29 @@ class ItemController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
+        // Validate input
         $this->validate($request, [
             'name' => 'required',
             'description' => 'required',
             'price' => 'required|integer',
-            'categories' => 'required',
+            'category' => 'required',
             'picture_1' => 'required',
             'picture_2' => 'sometimes',
             'picture_3' => 'sometimes',
             ]);
 
-        echo "NOICE!";
+        // Store item in DB and get ID
+        $itemId = $this->createItemAndGetId($request);
+
+        // Upload images and store in DB
+        $this->uploadPicturesAndStoreInDB([
+            $request->file('picture_1'), 
+            $request->file('picture_2'), 
+            $request->file('picture_3')
+            ], $itemId);
+
+        // Redirect to user items with flash message
+        return redirect(url(Auth::user()->path . '/items'));
     }
 
     /**
@@ -54,8 +69,7 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         //
     }
 
@@ -65,8 +79,7 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         //
     }
 
@@ -77,8 +90,7 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         //
     }
 
@@ -88,8 +100,34 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
+    }
+
+    public function createItemAndGetId(Request $request) {
+        return Item::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'category' => $request->category
+            ])->id;
+    }
+
+    public function uploadPicturesAndStoreInDB(array $pictures, $id) {
+        foreach ($pictures as $picture) {
+            if($picture) {
+                // Create unique image name
+                $image_name = time() . "-" . $picture->getClientOriginalName();
+
+                // Move the image to the correct folder
+                $picture->move('uploads/items', $image_name);
+
+                // Store in DB
+                ItemImage::create([
+                    'url' => $image_name,
+                    'item_id' => $id,
+                    ]);
+            }
+        }
     }
 }

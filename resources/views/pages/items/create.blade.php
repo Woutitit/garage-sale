@@ -7,7 +7,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Create item</div>
 				<div class="panel-body">
-					<form role="form" method="POST" action="/items" class="form-horizontal">
+					<form role="form" method="POST" action="/items" class="form-horizontal" enctype="multipart/form-data">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						
 						<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -49,10 +49,10 @@
 							</div>
 						</div>
 						
-						<div class="form-group{{ $errors->has('categories') ? ' has-error' : '' }}">
-							<label for="categories" class="col-md-4 control-label">Category</label>
+						<div class="form-group{{ $errors->has('category') ? ' has-error' : '' }}">
+							<label for="category" class="col-md-4 control-label">Category</label>
 							<div class="col-md-6">
-								<select class="form-control" id="categories" name="categories">
+								<select class="form-control" id="category" name="category">
 								@foreach($categories as $cat)
 									<option>{{ $cat->name }}</option>
 								@endforeach
@@ -67,9 +67,9 @@
 						</div>
 						
 						<div class="form-group{{ $errors->has('picture_1') ? ' has-error' : '' }}">
-							<label for="foto1" class="col-md-4 control-label">Foto 1</label>
+							<label for="picture1" class="col-md-4 control-label">Foto 1</label>
 							<div class="col-md-6">
-								<input type="file" id="foto1" name="picture_1">
+								<input type="file" id="picture1" name="picture_1">
 
 								@if ($errors->has('picture_1'))
                                     <span class="help-block">
@@ -80,9 +80,9 @@
 						</div>
 
 						<div class="form-group{{ $errors->has('picture_2') ? ' has-error' : '' }}">
-							<label for="foto2" class="col-md-4 control-label">Foto 2</label>
+							<label for="picture2" class="col-md-4 control-label">Foto 2</label>
 							<div class="col-md-6">
-								<input type="file" id="foto2" name="picture_2">
+								<input type="file" id="picture2" name="picture_2">
 
 								@if ($errors->has('picture_2'))
                                     <span class="help-block">
@@ -93,9 +93,9 @@
 						</div>
 
 						<div class="form-group{{ $errors->has('picture_3') ? ' has-error' : '' }}">
-							<label for="foto3" class="col-md-4 control-label">Foto 3</label>
+							<label for="picture3" class="col-md-4 control-label">Foto 3</label>
 							<div class="col-md-6">
-								<input type="file" id="foto3" name="picture_3">
+								<input type="file" id="picture3" name="picture_3">
 
 								@if ($errors->has('picture_3'))
                                     <span class="help-block">
