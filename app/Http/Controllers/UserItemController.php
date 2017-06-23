@@ -10,7 +10,7 @@ class UserItemController extends Controller {
 
     public function index() {
 
-    	Item::where('user_id', Auth::id())->get();
-    	return view('pages.user.items');
+    	$items = Item::where('user_id', Auth::id())->get();
+    	return view('pages.user.items', [ 'items' => $items ]);
     }
 }
