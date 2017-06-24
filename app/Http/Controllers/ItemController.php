@@ -69,7 +69,19 @@ class ItemController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        return view('pages.items.show');
+        // TODO: Join with ItemImages table too
+        $itemDetails = Item::join('users', 'items.user_id', 'users.id')
+        ->where('items.id', $id)
+        ->first([
+            'items.id AS item_id',
+            'items.name AS item_name',
+            'items.price',
+            'items.description',
+            'users.id AS user_id',
+            'users.name AS user_name',
+              ]);
+
+        return view('pages.items.show', ['itemDetails' => $itemDetails]);
     }
 
     /**
