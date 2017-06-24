@@ -11,19 +11,24 @@
 |
 */
 
+// Home
 Route::get('/', function () {
     return view('home');
 });
 
+// Login & register
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
+// User
 Route::group(['prefix' => '{user_url}'], function() {
 	Route::get('/items', 'UserController@showItems');
 	Route::get('/favorites', 'UserController@showFavorites');
 });
 
+// Items
 Route::resource('items', 'ItemController', ['except' => [
     'index'
 ]]);
+
+// Messages
+Route::resource('messages', 'MessageController');
