@@ -8,7 +8,7 @@
 	</div>
 	@else
 	<div class="page-header">
-		<h1>Favorites of Wout Borghgraef</h1>
+		<h1>Favorites of {{ $user_name }}</h1>
 	</div>
 	@endif
 </div>

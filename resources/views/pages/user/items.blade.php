@@ -10,7 +10,7 @@
 	<div class="u--cf"></div>
 	@else
 	<div class="page-header">
-		<h1>My Items</h1>
+		<h1>Items of {{ $user_name }}</h1>
 	</div>
 	@endif
 	@if (count($items) > 0)
