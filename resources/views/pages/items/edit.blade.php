@@ -7,7 +7,8 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Edit item</div>
 				<div class="panel-body">
-					<form role="form" method="POST" action="/items" class="form-horizontal" enctype="multipart/form-data">
+					<form role="form" method="POST" action="{{ '/items/' . $item->id }}" class="form-horizontal" enctype="multipart/form-data">
+						<input type="hidden" name="_method" value="PUT">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						
 						<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -95,7 +96,7 @@
 						<div class="form-group{{ $errors->has('picture_3') ? ' has-error' : '' }}">
 							<label for="picture3" class="col-md-4 control-label">Foto 3</label>
 							<div class="col-md-6">
-								<input type="file" id="picture3" name="picture_3">
+								<input type="file" id="picture3" name="picture_3" value="lol.png">
 
 								@if ($errors->has('picture_3'))
 								<span class="help-block">

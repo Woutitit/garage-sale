@@ -93,7 +93,32 @@ class ItemController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        //
+        // Validate input
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required|integer',
+            'category' => 'required',
+            'picture_1' => 'required',
+            'picture_2' => 'sometimes',
+            'picture_3' => 'sometimes',
+            ]);
+
+        // update item in DB and get ID
+        $this->updateItem($request, $id);
+
+        // Delete all current images from uploads folder and DB
+        ItemImage::where('item_id', $id)->delete();
+
+        // Upload new images and store in DB
+        $this->uploadPicturesAndStoreInDB([
+            $request->file('picture_1'), 
+            $request->file('picture_2'), 
+            $request->file('picture_3')
+            ], $id);
+
+        // Redirect to user items with flash message
+        return redirect(url('/items/' . $id));
     }
 
     /**
@@ -115,6 +140,20 @@ class ItemController extends Controller {
             'user_id' => Auth::id()
             ])->id;
     }
+
+    public function updateItem(Request $request, $id) {
+
+        $item = Item::find($id);
+
+        $item->name = $request->name;
+        $item->description = $request->description;
+        $item->price = $request->price;
+        $item->category = $request->category;
+        $item->user_id = Auth::id();
+
+        $item->save();
+    }
+
 
     public function uploadPicturesAndStoreInDB(array $pictures, $id) {
         foreach ($pictures as $picture) {
