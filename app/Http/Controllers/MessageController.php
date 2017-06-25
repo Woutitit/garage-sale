@@ -44,7 +44,7 @@ class MessageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        //
+        return view('pages.messages.show');
     }
 
     /**
