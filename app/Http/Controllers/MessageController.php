@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use Auth;
 
 class MessageController extends Controller {
     /**
@@ -41,7 +43,17 @@ class MessageController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
+    public function show($user_url) {
+
+        /*
+
+        $conversationDetails = User::join('messages', 'messages.user_id', 'users.id')
+        ->where('users.path', $user_url)
+        ->where('users.id', Auth::id())
+        ->get();
+
+        */
+
         return view('pages.messages.show');
     }
 
