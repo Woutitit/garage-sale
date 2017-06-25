@@ -31,4 +31,9 @@ Route::resource('items', 'ItemController', ['except' => [
 ]]);
 
 // Messages
-Route::resource('messages', 'MessageController');
+Route::resource('messages', 'MessageController', ['except' => [
+    'show'
+]]);
+
+// Message per user
+Route::resource('messages/t/{user_url}', 'MessageController@show');
