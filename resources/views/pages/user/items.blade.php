@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-	@if($items[0]->user_id === Auth::id())
+	@if($user_id === Auth::id())
 	<div class="page-header">
 		<h1>My Items</h1>
 	</div>

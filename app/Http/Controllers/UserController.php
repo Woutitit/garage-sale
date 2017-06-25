@@ -11,7 +11,11 @@ class UserController extends Controller {
     public function showItems($user_path) {
     	$items = Item::where('user_id', $this->getUserIdByUserPath($user_path))->get();
 
-    	return view('pages.user.items', ['items' => $items, 'user_name' => $this->getUserNameByUserPath($user_path)]);
+    	return view('pages.user.items', [
+            'items' => $items, 
+            'user_id' => $this->getUserIdByUserPath($user_path),
+            'user_name' => $this->getUserNameByUserPath($user_path)
+            ]);
     }
 
     public function showFavorites($user_path) {
