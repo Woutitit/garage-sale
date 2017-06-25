@@ -16,7 +16,7 @@
 			<a href="{{ '/items/' . $itemDetails->item_id . '/edit '}}" class="btn btn-danger">Delete</a>
 			@else
 			<button class="btn btn-primary">Buy</button>
-			<button class="btn btn-default">Message owner</button>
+			<a href="{{ '/messages/t/' . $itemDetails->user_url }}" class="btn btn-default">Message owner</a>
 			@endif
 		</div>
 	</div>

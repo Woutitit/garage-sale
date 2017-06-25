@@ -79,6 +79,7 @@ class ItemController extends Controller {
             'items.description',
             'users.id AS user_id',
             'users.name AS user_name',
+            'users.path AS user_url'
               ]);
 
         return view('pages.items.show', ['itemDetails' => $itemDetails]);
