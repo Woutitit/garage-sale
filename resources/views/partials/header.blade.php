@@ -42,6 +42,9 @@
                             <a href="{{ '/' . Auth::user()->path . '/favorites' }}">Favorites</a>
                         </li>
                         <li>
+                            <a href="/messages">Messages</a>
+                        </li>
+                        <li>
                             <a href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
