@@ -23,7 +23,7 @@ class AddUserIdToItemsTable extends Migration {
      * @return void
      */
     public function down() {
-        Schema::table('item_images', function (Blueprint $table) {
+        Schema::table('items', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
             $table->dropColumn('user_id');
         });
