@@ -24,6 +24,7 @@ class AddConversationIdToMessagesTable extends Migration {
      */
     public function down() {
         Schema::table('messages', function (Blueprint $table) {
+            $table->dropForeign(['conversation_id']);
             $table->dropColumn('conversation_id');
         });
     }
