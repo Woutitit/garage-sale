@@ -14,8 +14,14 @@ class ItemController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        //
+    public function index(Request $request) {
+        /*
+        $qs = $request->query('q');
+
+        $this->item->getItems($qs);
+
+        return view(url('pages.items.index'));
+        */
     }
 
     /**

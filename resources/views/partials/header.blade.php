@@ -59,6 +59,15 @@
             </li>
             @endif
         </ul>
+        <form id="searchItem" class="navbar-form" role="search" method="GET" action="items">
+            <input type="hidden" value="{{ csrf_token() }}">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search" name="q">
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 </nav>

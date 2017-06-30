@@ -26,9 +26,7 @@ Route::group(['prefix' => '{user_url}'], function() {
 });
 
 // Items
-Route::resource('items', 'ItemController', ['except' => [
-    'index'
-]]);
+Route::resource('items', 'ItemController');
 
 // Messages
 Route::resource('messages', 'MessageController', ['except' => [
