@@ -7,21 +7,20 @@ use App\Category;
 use App\Item;
 use App\ItemImage;
 use Auth;
+use App\Repositories\ItemRepository;
 
 class ItemController extends Controller {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request) {
-        /*
-        $qs = $request->query('q');
 
-        $this->item->getItems($qs);
+    private $item;
 
-        return view(url('pages.items.index'));
-        */
+    public function __construct(ItemRepository $item) 
+    {
+        $this->item = $item;
+    }
+
+    public function index(Request $request) 
+    {
+        return view('pages.items.index', ["items" => $this->item->findItemsByQuery($request->query('q'))]);
     }
 
     /**
@@ -29,8 +28,8 @@ class ItemController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
-
+    public function create() 
+    {
         $categories = Category::all()->sortBy("name");
 
         return view('pages.items.create', ['categories' => $categories]);
@@ -86,7 +85,7 @@ class ItemController extends Controller {
             'users.id AS user_id',
             'users.name AS user_name',
             'users.path AS user_url'
-              ]);
+            ]);
 
         return view('pages.items.show', ['itemDetails' => $itemDetails]);
     }

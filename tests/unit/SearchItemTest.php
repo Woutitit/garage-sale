@@ -17,21 +17,10 @@ class SearchItemTest extends \Codeception\Test\Unit
     }
 
     // tests
-    public function testShouldReturnItemByTitle() {
+    public function testfindItemsByQueryShouldReturnItemsByTitle() 
+    {
+        $foo = true;
 
-        $item = new ItemRepository();
-        $item->getByCriteria();
-
-    }
-
-    public function testShouldReturnItemByTitle() {
-        // So we could go ahead and call a controller method
-        // But isn't it weird for this functionality to be in the controller?
-    }
-
-    public function testShouldReturnFalseIfNoArgumentGiven() {
-        // So we could go ahead and call a controller method
-        // But isn't it weird for this functionality to be in the controller?
-
+        $this->assertTrue($foo);
     }
 }
