@@ -2,8 +2,24 @@
 
 @section('content')
 <div class="container">
-	@foreach ($items as $item)
-	{{ $item->name }}
-	@endforeach
+	<div class="row">
+		@foreach ($items as $item)
+		<div class="col-sm-6 col-md-4">
+			<div class="thumbnail">
+				<img src="..." alt="...">
+				<div class="caption">
+					<h3>{{ $item->name }}</h3>
+					<p>{{ $item->description }}</p>
+					<p>
+						<a href="/items/1" role="button" class="btn btn-primary">Bekijken</a>
+						@if ($item->user_id = Auth::id())
+						<a href="/items/1/edit" role="button" class="btn btn-default">Bewerken</a>
+						@endif
+					</p>
+				</div>
+			</div>
+		</div>
+		@endforeach
+	</div>
 </div>
 @endsection

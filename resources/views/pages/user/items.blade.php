@@ -22,10 +22,11 @@
 				<div class="caption">
 					<h3>{{ $item->name }}</h3>
 					<p>{{ $item->description }}</p>
-					<p><a href="{{ '/items/' . $item->id }}" class="btn btn-primary" role="button">Bekijken</a>
-					@if (Auth::check())
-					<a href="{{ '/items/' . $item->id . '/edit' }}" class="btn btn-default" role="button">Bewerken</a>
-					@endif
+					<p>
+						<a href="{{ '/items/' . $item->id }}" class="btn btn-primary" role="button">Bekijken</a>
+						@if ($item->user_id = Auth::id())
+						<a href="{{ '/items/' . $item->id . '/edit' }}" class="btn btn-default" role="button">Bewerken</a>
+						@endif
 					</p>
 				</div>
 			</div>
