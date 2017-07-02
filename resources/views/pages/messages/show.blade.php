@@ -10,12 +10,15 @@
 					<p>You don't have common messages yet.</p>					
 				</div>
 				<div class="panel-footer">
-					<div class="input-group">
-						<input class="form-control" placeholder="Send a message...">
-						<span class="input-group-btn">
-							<button class="btn btn-primary" type="button">Send</button>
-						</span>
-					</div>
+					<form action="/messages" method="POST">
+						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+						<div class="input-group">
+							<input class="form-control" placeholder="Send a message..." name="msg">
+							<span class="input-group-btn">
+								<button class="btn btn-primary" type="submit">Send</button>
+							</span>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>

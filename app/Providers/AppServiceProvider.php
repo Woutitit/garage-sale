@@ -25,6 +25,11 @@ class AppServiceProvider extends ServiceProvider {
             $this->app->register(DuskServiceProvider::class);
         }
 
+        // Repositories
         $this->app->bind('App\Repositories\ItemRepositoryInterface', 'App\Repositories\ItemRepository');
+        $this->app->bind('App\Repositories\MessageRepositoryInterface', 'App\Repositories\MessageRepository');
+
+        // Services
+        $this->app->bind('App\Services\MessageServiceInterface', 'App\Services\MessageService');
     }
 }

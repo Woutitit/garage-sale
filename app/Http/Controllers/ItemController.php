@@ -23,24 +23,11 @@ class ItemController extends Controller {
         return view('pages.items.index', ["items" => $this->item->findItemsByQuery($request->query('q'))]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create() 
     {
-        $categories = Category::all()->sortBy("name");
-
-        return view('pages.items.create', ['categories' => $categories]);
+        return view('pages.items.create', ['categories' => Category::all()->sortBy("name")]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         // Validate input
