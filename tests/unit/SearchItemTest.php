@@ -1,5 +1,6 @@
 <?php
 
+use App\Repositories\ItemRepository;
 
 class SearchItemTest extends \Codeception\Test\Unit
 {
@@ -17,10 +18,9 @@ class SearchItemTest extends \Codeception\Test\Unit
     }
 
     // tests
-    public function testfindItemsByQueryShouldReturnItemsByTitle() 
+    public function testfindItemsByQueryReturnsItemsWhenTitleHintGiven() 
     {
-        $foo = true;
-
-        $this->assertTrue($foo);
+        //
+       
     }
 }

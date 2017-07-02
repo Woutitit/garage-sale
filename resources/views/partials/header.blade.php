@@ -59,7 +59,7 @@
             </li>
             @endif
         </ul>
-        <form id="searchItem" class="navbar-form" role="search" method="GET" action="items">
+        <form id="searchItem" class="navbar-form" role="search" method="GET" action="/items">
             <input type="hidden" value="{{ csrf_token() }}">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Search" name="q">
