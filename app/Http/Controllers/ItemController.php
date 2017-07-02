@@ -7,13 +7,13 @@ use App\Category;
 use App\Item;
 use App\ItemImage;
 use Auth;
-use App\Repositories\ItemRepository;
+use App\Repositories\ItemRepositoryInterface;
 
 class ItemController extends Controller {
 
     private $item;
 
-    public function __construct(ItemRepository $item) 
+    public function __construct(ItemRepositoryInterface $item) 
     {
         $this->item = $item;
     }

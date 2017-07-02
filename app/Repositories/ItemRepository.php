@@ -3,7 +3,7 @@ namespace App\Repositories;
 
 use App\Item;
 
-class ItemRepository 
+class ItemRepository implements ItemRepositoryInterface
 {
 	public function findItemsByQuery($query)
 	{
