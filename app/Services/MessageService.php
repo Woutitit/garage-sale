@@ -18,26 +18,30 @@ class MessageService implements MessageServiceInterface
 		$this->message = $message;
 	}
 
-	public function validateAndStore($request)
+	public function validateAndStore($request, array $users)
 	{
 		$this->validate($request, ['msg' => 'required']);
 
-		// Check if conversation already exists by path
-		// If conversation doesn't exist, check to how much people you've send a message
-		// We should check to whom you send a message
-		// Based on that we should check if their id's have the same conversation_id's as the sender
-		// If 0 results then we know this conversation has not been created yet and we need to create one and return that ID
-		// If 1 results (which should be the only possibilty) then we should only return the conversation_id
-		DB::table("conversations_users")
-		->select(DB::raw("COUNT(user_id), conversation_id "))
-		->groupBy("conversation_id")
-		->havingRaw("COUNT(user_id) = 3")
-		->get();	
+		$query = DB::table("conversation_user")
+		->select(DB::raw("COUNT(user_id), conversation_id"));
 
-		$this->message->save([
-			"message" => $request->msg,
-			"user_id" => Auth::id(),
-			"conversation_id" => 1,
-			]);
+		foreach($users as $user_id) 
+		{
+			$query->orWhere("user_id", $user_id);
+		}
+
+		$query = $query->groupBy("conversation_id")->havingRaw("COUNT(user_id) =" . count($users) )->first();
+
+		// Create new conversation and/or get ID
+		if(count($query) === 1) 
+		{
+			echo "YAY!";	
+		} 
+		else 
+		{
+			echo "NAY!";
+		}
+
+		// $this->message->save(["message" => $request->msg, "user_id" => Auth::id(), "conversation_id" => 1]); 
 	}
 }

@@ -3,5 +3,5 @@ namespace App\Services;
 
 interface MessageServiceInterface
 {
-	public function validateAndStore($request);
+	public function validateAndStore($request, array $users);
 }

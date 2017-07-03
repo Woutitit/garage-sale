@@ -12,6 +12,7 @@
 				<div class="panel-footer">
 					<form action="/messages" method="POST">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+						<input type="hidden" name="user_url" value="{{ $user_url }}">
 						<div class="input-group">
 							<input class="form-control" placeholder="Send a message..." name="msg">
 							<span class="input-group-btn">

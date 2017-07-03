@@ -6,74 +6,56 @@ use Illuminate\Http\Request;
 use App\User;
 use Auth;
 use App\Services\MessageServiceInterface;
+use App\Repositories\UserRepositoryInterface;
 
 class MessageController extends Controller 
 {
-    private $messageService; 
+    private $messageService, $user;
 
-    public function __construct(MessageServiceInterface $messageService) 
+    public function __construct(MessageServiceInterface $messageService, UserRepositoryInterface $user) 
     {
         $this->messageService = $messageService;
+        $this->user = $user;
     }
+
+
     public function index() 
     {
         return view('pages.messages.index');
     }
+
 
     public function create()
     {
         //
     }
 
+
     public function store(Request $request)
     {
-        $this->messageService->validateAndStore($request);
-        return redirect(url('/messages'));
+        $this->messageService->validateAndStore($request, [Auth::id(), $this->user->getIdByUserUrl($request->user_url)]);
+        // return redirect(url('/messages'));
     }
 
-    public function show($user_url) {
 
-        /*
-
-        $conversationDetails = User::join('messages', 'messages.user_id', 'users.id')
-        ->where('users.path', $user_url)
-        ->where('users.id', Auth::id())
-        ->get();
-
-        */
-
-        return view('pages.messages.show');
+    public function show($user_url) 
+    {
+        return view('pages.messages.show', ["user_url" => $user_url]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         //
