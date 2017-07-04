@@ -40,7 +40,7 @@ class ConversationRepository implements ConversationRepositoryInterface
 		{
 			$conversation_id = Conversation::create()->id;
 
-			foreach($users as $user_id)
+			foreach($user_ids as $user_id)
 			{
 				ConversationUser::create(["conversation_id" => $conversation_id, "user_id" => $user_id]);
 			}

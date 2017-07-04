@@ -7,7 +7,13 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Messages with Wout Borghgraef</div>
 				<div class="panel-body">
-					<p>You don't have common messages yet.</p>					
+				@if(count ($messages) > 0)
+					@foreach ($messages as $message)
+					<p>{{ $message->message }}</p>
+					@endforeach	
+					@else
+					<p>You don't have common messages yet.</p>
+					@endif
 				</div>
 				<div class="panel-footer">
 					<form action="/messages" method="POST">
