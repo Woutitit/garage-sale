@@ -7,13 +7,15 @@ use App\User;
 use Auth;
 use App\Services\MessageServiceInterface;
 use App\Repositories\UserRepositoryInterface;
+use App\Repositories\ConversationRepositoryInterface;
 
 class MessageController extends Controller 
 {
     private $messageService, $user;
 
-    public function __construct(MessageServiceInterface $messageService, UserRepositoryInterface $user) 
+    public function __construct(MessageServiceInterface $messageService, UserRepositoryInterface $user, ConversationRepositoryInterface $conversation) 
     {
+        $this->conversation = $conversation;
         $this->messageService = $messageService;
         $this->user = $user;
     }
@@ -21,7 +23,10 @@ class MessageController extends Controller
 
     public function index() 
     {
-        return view('pages.messages.index');
+        // Get messages by user ID
+        var_dump($this->conversation->getConversationsByUserId(Auth::id()));
+
+     
     }
 
 

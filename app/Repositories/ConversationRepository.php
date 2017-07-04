@@ -7,6 +7,15 @@ use App\ConversationUser;
 
 class ConversationRepository implements ConversationRepositoryInterface
 {
+	public function getConversationsByUserId($user_id) {
+		// We should get all conversation in conversation_user that have this user_id 
+		// + per conversation we should get ALL conversation members
+		return ConversationUser::join('conversations', 'conversation_user.conversation_id', 'conversations.id')
+		->where('user_id', $user_id)
+		->get(['conversations.name']);
+	}
+
+
 	public function getConversationIdByUserIds($user_ids) 
 	{
 		$query = DB::table("conversation_user")
@@ -28,6 +37,7 @@ class ConversationRepository implements ConversationRepositoryInterface
 			return false;
 		}
 	}
+
 
 	public function findByUsersOrCreate($user_ids)
 	{
