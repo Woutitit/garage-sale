@@ -20,6 +20,15 @@ class MessageService implements MessageServiceInterface
 		$this->message = $message;
 	}
 
+	public function getMessages(array $user_ids) 
+	{
+		// Get conversation ID
+        $conversation_id = $this->conversation->getConversationIdByUserIds($user_ids);
+
+        // Find messages by conversation ID
+        $this->message->findByConversationId();
+	}
+
 	public function validateAndStore($request, array $users)
 	{
 		// Validate message

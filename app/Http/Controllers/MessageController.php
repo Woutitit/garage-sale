@@ -43,6 +43,10 @@ class MessageController extends Controller
 
     public function show($user_url) 
     {
+        // Get messages
+        $this->messageService->getMessages([Auth::id(), $this->user->getIdByUserUrl($user_url)]);
+
+        // Return view with data
         return view('pages.messages.show', ["user_url" => $user_url]);
     }
 
