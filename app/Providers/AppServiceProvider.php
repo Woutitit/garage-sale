@@ -26,6 +26,7 @@ class AppServiceProvider extends ServiceProvider {
         }
 
         // Repositories
+        $this->app->bind('App\Repositories\ConversationRepositoryInterface', 'App\Repositories\ConversationRepository');
         $this->app->bind('App\Repositories\ItemRepositoryInterface', 'App\Repositories\ItemRepository');
         $this->app->bind('App\Repositories\MessageRepositoryInterface', 'App\Repositories\MessageRepository');
         $this->app->bind('App\Repositories\UserRepositoryInterface', 'App\Repositories\UserRepository');
