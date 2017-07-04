@@ -7,7 +7,7 @@ use App\ConversationUser;
 
 class ConversationRepository implements ConversationRepositoryInterface
 {
-	public function findOrCreateByUsers($users)
+	public function findByUsersOrCreate($users)
 	{
 		$query = DB::table("conversation_user")
 		->select(DB::raw("COUNT(user_id), conversation_id"));
@@ -19,7 +19,6 @@ class ConversationRepository implements ConversationRepositoryInterface
 
 		$query = $query->groupBy("conversation_id")->havingRaw("COUNT(user_id) =" . count($users) )->first();
 
-		// Create new conversation and/or get ID
 		if(count($query) === 1) 
 		{
 			return $query->conversation_id;

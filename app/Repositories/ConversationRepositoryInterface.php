@@ -3,5 +3,5 @@ namespace App\Repositories;
 
 interface ConversationRepositoryInterface
 {
-	public function findOrCreateByUsers($users);
+	public function findByUsersOrCreate($users);
 }

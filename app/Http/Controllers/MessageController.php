@@ -33,8 +33,11 @@ class MessageController extends Controller
 
     public function store(Request $request)
     {
+        // Store message
         $this->messageService->validateAndStore($request, [Auth::id(), $this->user->getIdByUserUrl($request->user_url)]);
-        // return redirect(url('/messages'));
+
+        // Return back
+        return redirect(url('/messages/t/' . $request->user_url));
     }
 
 

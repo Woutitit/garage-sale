@@ -26,9 +26,9 @@ class MessageService implements MessageServiceInterface
 		$this->validate($request, ['msg' => 'required']);
 
 		// Create and/get conversation ID
-		$conversation_id = $this->conversation->findOrCreateByUsers($users);
+		$conversation_id = $this->conversation->findByUsersOrCreate($users);
 
 		// Create message
-		var_dump($conversation_id);
+		$this->message->save(["message" => $request->msg, "user_id" => Auth::id(), "conversation_id" => $conversation_id]); 
 	}
 }
