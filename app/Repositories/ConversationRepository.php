@@ -1,6 +1,7 @@
 <?php 
 namespace App\Repositories;
 
+use Auth;
 use DB;
 use App\Conversation;
 use App\ConversationUser;
@@ -48,7 +49,24 @@ class ConversationRepository implements ConversationRepositoryInterface
 		} 
 		else 
 		{
-			$conversation_id = Conversation::create()->id;
+			// TODO LOOK UP USERNAMES BY ID AND EXCLUDE OWN ID
+			$conversation_name = DB::table("users");
+
+			foreach($user_ids as $user_id) {
+				if($user_id === Auth::user()->id) 
+				{
+					$conversation_name->where('id', '!=', $user_id);
+				}
+				else 
+				{
+					$conversation_name->where('id', $user_id);
+				}
+			}
+
+			$conversation_name = implode(",", $conversation_name->pluck('name')->toArray());
+			
+
+			$conversation_id = Conversation::create(["name" => $conversation_name])->id;
 
 			foreach($user_ids as $user_id)
 			{

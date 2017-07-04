@@ -24,9 +24,10 @@ class MessageController extends Controller
     public function index() 
     {
         // Get messages by user ID
-        var_dump($this->conversation->getConversationsByUserId(Auth::id()));
+        $this->conversation->getConversationsByUserId(Auth::id());
 
-     
+        // Return view with conversations
+        return view('pages.messages.index');
     }
 
 
