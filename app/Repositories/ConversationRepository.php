@@ -53,14 +53,7 @@ class ConversationRepository implements ConversationRepositoryInterface
 			$conversation_name = DB::table("users");
 
 			foreach($user_ids as $user_id) {
-				if($user_id === Auth::user()->id) 
-				{
-					$conversation_name->where('id', '!=', $user_id);
-				}
-				else 
-				{
-					$conversation_name->where('id', $user_id);
-				}
+				$conversation_name->orWhere('id', $user_id);
 			}
 
 			$conversation_name = implode(",", $conversation_name->pluck('name')->toArray());
