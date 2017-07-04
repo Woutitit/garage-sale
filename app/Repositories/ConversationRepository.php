@@ -3,6 +3,7 @@ namespace App\Repositories;
 
 use DB;
 use App\Conversation;
+use App\ConversationUser;
 
 class ConversationRepository implements ConversationRepositoryInterface
 {
@@ -21,11 +22,20 @@ class ConversationRepository implements ConversationRepositoryInterface
 		// Create new conversation and/or get ID
 		if(count($query) === 1) 
 		{
-			return $query->id;
+			return $query->conversation_id;
 		} 
 		else 
 		{
-			return Conversation::create();
+			$conversation_id = Conversation::create()->id;
+			foreach($users as $user_id)
+			{
+				ConversationUser::create([
+					"conversation_id" => $conversation_id,
+					"user_id" => $user_id
+					]);
+			}
+
+			return $conversation_id;
 		}
 	}
 }
