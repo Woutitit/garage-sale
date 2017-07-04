@@ -10,3 +10,27 @@
 
 // Utils
 @import "utils";
+
+// Custom CSS
+
+.message {
+	display: flex;
+	flex-direction: row;
+	margin: 8px 0;
+}
+
+.message--self {
+	display: flex;
+	flex-direction: row-reverse;
+}
+
+.message div {
+	background-color: #f5f8fa;;
+	border-radius: 2px;
+	padding: 8px 16px;
+	width: 55%;
+}
+.message--self div {
+	background-color: #3097d1;
+	color: #fff;
+}

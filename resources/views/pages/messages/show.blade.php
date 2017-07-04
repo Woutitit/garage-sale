@@ -7,9 +7,11 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Messages with Wout Borghgraef</div>
 				<div class="panel-body">
-				@if(count ($messages) > 0)
+					@if(count ($messages) > 0)
 					@foreach ($messages as $message)
-					<p>{{ $message->message }}</p>
+					<div class="message @if(Auth::user()->id === $message->user_id) message--self @endif">
+						<div>{{ $message->message }}</div>
+					</div>
 					@endforeach	
 					@else
 					<p>You don't have common messages yet.</p>

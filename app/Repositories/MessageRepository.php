@@ -7,7 +7,7 @@ class MessageRepository implements MessageRepositoryInterface
 {
 	public function findMessagesByConversationId($conversation_id)
 	{
-		return Message::where('conversation_id', 9)->get();
+		return Message::where('conversation_id', $conversation_id)->get();
 	}
 
 	public function save($data)
