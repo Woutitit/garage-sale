@@ -13,10 +13,16 @@
 			<h3 class="item-price">€{{ $itemDetails->price }}</h3>
 			@if ($itemDetails->user_id === Auth::id())
 			<a href="{{ '/items/' . $itemDetails->item_id . '/edit '}}" class="btn btn-primary">Edit</a>
-			<a href="{{ '/items/' . $itemDetails->item_id . '/edit '}}" class="btn btn-danger">Delete</a>
+			<a href="{{ '/items/' . $itemDetails->item_id . '/edit '}}" class="btn btn-danger">
+			</a>
 			@else
 			<button class="btn btn-primary">Buy</button>
-			<a href="{{ '/messages/t/' . $itemDetails->user_url }}" class="btn btn-default">Message owner</a>
+			<a href="{{ '/messages/t/' . $itemDetails->user_url }}" class="btn btn-default">
+				<span class="glyphicon glyphicon-comment"></span> Message owner
+			</a>
+			<button class="btn btn-default" v-on:click="toggleFavourite({{ $itemDetails->item_id }})">
+				<span class="glyphicon glyphicon-heart-empty"></span> Favourite
+			</button>
 			@endif
 		</div>
 	</div>

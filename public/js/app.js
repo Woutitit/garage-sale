@@ -793,7 +793,14 @@ window.Vue = __webpack_require__(34);
 Vue.component('example', __webpack_require__(35));
 
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  methods: {
+    toggleFavourite: function toggleFavourite($item_id) {
+      axios.post('/items/' + $item_id + '/toggleFavourite').then(function ($response) {
+        console.log($response);
+      });
+    }
+  }
 });
 
 /***/ }),

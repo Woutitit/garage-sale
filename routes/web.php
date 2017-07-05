@@ -27,6 +27,7 @@ Route::group(['prefix' => '{user_url}'], function() {
 
 // Items
 Route::resource('items', 'ItemController');
+Route::post('items/{item_id}/toggleFavourite', 'ItemController@toggleFavourite');
 
 // Messages
 Route::resource('messages', 'MessageController', ['except' => [

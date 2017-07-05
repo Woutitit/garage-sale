@@ -178,4 +178,9 @@ class ItemController extends Controller {
             }
         }
     }
+
+    public function toggleFavourite($item_id) {
+        // Check if favourites table has record with user_id AND item_id
+        return $this->item->createOrDeleteFavouriteByItemId($item_id);
+    }
 }

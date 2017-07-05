@@ -18,5 +18,12 @@ window.Vue = require('vue');
 Vue.component('example', require('./components/Example.vue'));
 
 const app = new Vue({
-    el: '#app'
+	el: '#app',
+	methods: {
+		toggleFavourite: function($item_id) {
+    		axios.post('/items/' + $item_id + '/toggleFavourite').then(($response) => {
+    			console.log($response);
+    		})
+    	}
+    }
 });
