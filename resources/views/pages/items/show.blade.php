@@ -21,7 +21,7 @@
 				<span class="glyphicon glyphicon-comment"></span> Message owner
 			</a>
 			@if ($isFavourited)
-			<button id="btnFavourite" class="btn btn-success" v-on:click="toggleFavourite({{ $itemDetails->item_id }})">
+			<button id="btnFavourite" class="btn btn-warning" v-on:click="toggleFavourite({{ $itemDetails->item_id }})">
 				<span class="glyphicon glyphicon-heart"></span> Favourited
 			</button>
 			@else

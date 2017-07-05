@@ -805,12 +805,12 @@ var app = new Vue({
         if (response.data === 'added') {
           console.log("LOL");
           $("#itemDetails .glyphicon-heart-empty").removeClass('glyphicon-heart-empty').addClass('glyphicon-heart');
-          $("#itemDetails #btnFavourite").removeClass('btn-default').addClass('btn-success');
-          $("#itemDetails #btnFavourite").html('<span class="glyphicon glyphicon-heart"></span> Favourited!');
+          $("#itemDetails #btnFavourite").removeClass('btn-default').addClass('btn-warning');
+          $("#itemDetails #btnFavourite").html('<span class="glyphicon glyphicon-heart"></span> Favourited');
         } else {
           console.log("LEL");
           $("#itemDetails .glyphicon-heart").removeClass('glyphicon-heart').addClass('glyphicon-heart-empty');
-          $("#itemDetails #btnFavourite").removeClass('btn-success').addClass('btn-default');
+          $("#itemDetails #btnFavourite").removeClass('btn-warning').addClass('btn-default');
           $("#itemDetails #btnFavourite").html('<span class="glyphicon glyphicon-heart"></span> Favourite');
         }
       });
