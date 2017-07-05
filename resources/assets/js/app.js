@@ -28,12 +28,10 @@ const app = new Vue({
 		toggleFavourite: function(item_id) {
     		axios.post('/items/' + item_id + '/toggleFavourite').then((response) => {
     			if(response.data === 'added') {
-    				console.log("LOL");
     				$( "#itemDetails .glyphicon-heart-empty").removeClass('glyphicon-heart-empty').addClass('glyphicon-heart');
     				$( "#itemDetails #btnFavourite").removeClass('btn-default').addClass('btn-warning');
     				$( "#itemDetails #btnFavourite").html('<span class="glyphicon glyphicon-heart"></span> Favourited');
     			} else {
-    				console.log("LEL");
     				$( "#itemDetails .glyphicon-heart").removeClass('glyphicon-heart').addClass('glyphicon-heart-empty');
     				$( "#itemDetails #btnFavourite").removeClass('btn-warning').addClass('btn-default');
     				$( "#itemDetails #btnFavourite").html('<span class="glyphicon glyphicon-heart"></span> Favourite');
