@@ -19,10 +19,19 @@ Vue.component('example', require('./components/Example.vue'));
 
 const app = new Vue({
 	el: '#app',
+	data: function() {
+		return {
+			isFavourite: false
+		}
+	},
 	methods: {
-		toggleFavourite: function($item_id) {
-    		axios.post('/items/' + $item_id + '/toggleFavourite').then(($response) => {
-    			console.log($response);
+		toggleFavourite: function(item_id) {
+    		axios.post('/items/' + item_id + '/toggleFavourite').then((response) => {
+    			if(response.data === 'added') {
+    				this.isFavourite = true;
+    			} else {
+    				this.isFavourite = false;
+    			}
     		})
     	}
     }

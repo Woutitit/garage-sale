@@ -794,10 +794,21 @@ Vue.component('example', __webpack_require__(35));
 
 var app = new Vue({
   el: '#app',
+  data: function data() {
+    return {
+      isFavourite: false
+    };
+  },
   methods: {
-    toggleFavourite: function toggleFavourite($item_id) {
-      axios.post('/items/' + $item_id + '/toggleFavourite').then(function ($response) {
-        console.log($response);
+    toggleFavourite: function toggleFavourite(item_id) {
+      var _this = this;
+
+      axios.post('/items/' + item_id + '/toggleFavourite').then(function (response) {
+        if (response.data === 'added') {
+          _this.isFavourite = true;
+        } else {
+          _this.isFavourite = false;
+        }
       });
     }
   }

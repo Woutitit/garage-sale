@@ -20,7 +20,10 @@
 			<a href="{{ '/messages/t/' . $itemDetails->user_url }}" class="btn btn-default">
 				<span class="glyphicon glyphicon-comment"></span> Message owner
 			</a>
-			<button class="btn btn-default" v-on:click="toggleFavourite({{ $itemDetails->item_id }})">
+			<button class="btn btn-success" v-on:click="toggleFavourite({{ $itemDetails->item_id }})" v-if="isFavourite">
+				<span class="glyphicon glyphicon-heart"></span> Favourited
+			</button>
+			<button class="btn btn-default" v-on:click="toggleFavourite({{ $itemDetails->item_id }})" v-else>
 				<span class="glyphicon glyphicon-heart-empty"></span> Favourite
 			</button>
 			@endif
