@@ -75,7 +75,8 @@ class ItemController extends Controller {
             'users.path AS user_url'
             ]);
 
-        return view('pages.items.show', ['itemDetails' => $itemDetails]);
+
+        return view('pages.items.show', ['itemDetails' => $itemDetails, 'isFavourited' => $this->item->isFavourited($id)]);
     }
 
     /**

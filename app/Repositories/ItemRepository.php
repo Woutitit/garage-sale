@@ -17,14 +17,24 @@ class ItemRepository implements ItemRepositoryInterface
 
 	public function createOrDeleteFavouriteByItemId($item_id)
 	{
+		if($this->isFavourited($item_id)) {
+			Favourite::where('item_id', $item_id)->where('user_id', Auth::id())->delete();
+			return "deleted";
+		} else {
+			Favourite::create(["item_id" => $item_id, "user_id" => Auth::id()]);
+			return "added";
+		}
+	}
+
+	public function isFavourited($item_id)
+	{
 		$query = DB::table("favourites")->where('item_id', $item_id)->where('user_id', Auth::id())->first();
 
 		if($query) {
-			Favourite::where('item_id', $item_id)->where('user_id', Auth::id())->delete();
-			return "added";
+			return true;
 		} else {
-			Favourite::create(["item_id" => $item_id, "user_id" => Auth::id()]);
-			return "deleted";
+			return false;
 		}
 	}
+
 }

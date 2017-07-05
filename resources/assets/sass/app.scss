@@ -13,6 +13,20 @@
 
 // Custom CSS
 
+#btnFavourite.btn-success:focus {
+	color: #fff;
+    background-color: #2ab27b;
+    border-color: #259d6d;
+	outline: 0;
+}
+
+#btnFavourite.btn-default:focus {
+	color: #636b6f;
+    background-color: #fff;
+    border-color: #ccc;
+	outline: 0;
+}
+
 .message {
 	display: flex;
 	flex-direction: row;

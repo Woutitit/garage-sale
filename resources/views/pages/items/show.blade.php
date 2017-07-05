@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div id="itemDetails" class="container">
 	<div class="Row">
 		<div class="col-md-4">
 			<img class="img-responsive" src="{{ asset('uploads/items/1498267957-beef-7795x5725-steak-food-cooking-grill-vegetables-meal-meat-tomato-408.jpg') }}">
@@ -20,12 +20,15 @@
 			<a href="{{ '/messages/t/' . $itemDetails->user_url }}" class="btn btn-default">
 				<span class="glyphicon glyphicon-comment"></span> Message owner
 			</a>
-			<button class="btn btn-success" v-on:click="toggleFavourite({{ $itemDetails->item_id }})" v-if="isFavourite">
+			@if ($isFavourited)
+			<button id="btnFavourite" class="btn btn-success" v-on:click="toggleFavourite({{ $itemDetails->item_id }})">
 				<span class="glyphicon glyphicon-heart"></span> Favourited
 			</button>
-			<button class="btn btn-default" v-on:click="toggleFavourite({{ $itemDetails->item_id }})" v-else>
+			@else
+			<button id="btnFavourite" class="btn btn-default" v-on:click="toggleFavourite({{ $itemDetails->item_id }})">
 				<span class="glyphicon glyphicon-heart-empty"></span> Favourite
 			</button>
+			@endif
 			@endif
 		</div>
 	</div>
