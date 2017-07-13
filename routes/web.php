@@ -30,9 +30,8 @@ Route::resource('items', 'ItemController');
 Route::post('items/{item_id}/toggleFavourite', 'ItemController@toggleFavourite');
 
 // Messages
-Route::resource('messages', 'MessageController', ['except' => [
-    'show'
-]]);
+Route::resource('messages', 'MessageController', ['except' => ['show']]);
 
 // Message per user
 Route::get('messages/t/{user_url}', 'MessageController@show');
+
